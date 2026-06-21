@@ -1,47 +1,78 @@
-# Roadmap
+# 01 — Roadmap do Projeto
 
-## Fase 0 - Fundacao
+## Fase 0 — Fundação
 
-- Documentar visao, arquitetura, seguranca, modelagem e regras fiscais iniciais.
-- Configurar Laravel para o projeto AB Emissor NF-e.
-- Criar migrations base com padrao multiempresa.
-- Validar conexao local com banco `ab_emissor_nfe`.
-- Definir padroes de codigo e nomenclatura.
+- Criar projeto Laravel.
+- Criar repositório GitHub.
+- Configurar banco local.
+- Criar documentação.
+- Definir padrões de código.
+- Criar modelagem inicial.
+- Criar migrations base.
+- Validar ambiente local.
 
-## Fase 1 - Base SaaS multiempresa
+## Fase 1 — Núcleo seguro
 
-- Autenticacao.
+- Autenticação.
+- Usuários.
+- Tenants.
 - Empresas.
-- Usuarios e vinculos com empresas.
-- Policies e escopo por empresa.
-- Auditoria de acoes sensiveis.
-- Form Requests para entradas de usuario.
+- Papéis e permissões.
+- Auditoria inicial.
+- Layout principal.
 
-## Fase 2 - Cadastros fiscais
+## Fase 2 — Cadastros fiscais
 
-- Clientes/destinatarios.
+- Destinatários.
 - Produtos.
-- Certificados digitais.
-- Parametros fiscais por empresa.
-- Validacoes de dados fiscais antes da emissao.
+- Transportadoras.
+- Natureza da operação.
+- CFOP.
+- NCM.
+- Regras fiscais básicas.
 
-## Fase 3 - NF-e modelo 55
+## Fase 3 — Certificados digitais
 
-- Modelagem da NF-e.
-- Rascunho, validacao, assinatura, transmissao, consulta e cancelamento.
-- Integracao com NFePHP somente quando a base estiver preparada.
-- Armazenamento seguro de XMLs, protocolos e eventos fiscais.
+- Upload seguro.
+- Criptografia.
+- Validação.
+- Leitura da validade.
+- Alerta de vencimento.
 
-## Fase 4 - Operacao contabilidade
+## Fase 4 — NF-e em homologação
 
+- Rascunho.
+- Itens.
+- Totais.
+- Reserva de numeração.
+- Geração XML.
+- Assinatura.
+- Transmissão homologação.
+- Retorno.
+- DANFE.
+
+## Fase 5 — Produção assistida
+
+- Liberação por empresa.
+- Emissão produção.
 - Painel da contabilidade.
-- Relatorios operacionais.
-- Filtros por empresa, periodo, status e risco.
-- Exportacoes controladas.
+- Exportação XML.
+- Relatórios.
 
-## Fase 5 - SaaS comercial futuro
+## Fase 6 — Operação fiscal
 
-- Billing.
-- Planos e limites.
-- Onboarding comercial.
-- Controles de inadimplencia e suspensao.
+- Cancelamento.
+- Inutilização.
+- Carta de correção.
+- Reprocessamento.
+- Logs avançados.
+- Monitoramento.
+
+## Fase 7 — SaaS comercial futuro
+
+- Planos.
+- Assinaturas.
+- Consumo mensal.
+- Pagamentos.
+- Webhooks.
+- Bloqueio server-side.

@@ -1,33 +1,46 @@
-# Requisitos
+# 03 — Requisitos
 
-## Funcionais iniciais
+## Requisitos funcionais
 
-- Permitir autenticacao de usuarios.
-- Permitir cadastro e manutencao de empresas.
-- Permitir vinculo de usuarios a uma ou mais empresas.
-- Permitir cadastro de clientes/destinatarios.
-- Permitir cadastro de produtos.
-- Permitir cadastro seguro de certificados digitais fora de pasta publica.
-- Permitir criacao futura de NF-e modelo 55.
-- Permitir registro de eventos fiscais.
-- Permitir consultas e relatorios operacionais.
-- Permitir painel da contabilidade para acompanhamento de clientes.
-- Permitir auditoria de acoes sensiveis.
+### Cliente emitente
 
-## Nao funcionais
+- Fazer login.
+- Cadastrar destinatários.
+- Cadastrar produtos.
+- Criar NF-e.
+- Adicionar itens.
+- Emitir NF-e.
+- Baixar XML.
+- Baixar DANFE.
+- Consultar histórico.
+- Ver rejeições.
 
-- PHP 8.2/8.3.
-- Laravel atual do projeto.
-- MariaDB/MySQL com `utf8mb4` e `utf8mb4_unicode_ci`.
-- Projeto fora de `/xampp/htdocs`.
-- Seguranca por empresa desde a modelagem.
-- Entradas validadas por Form Requests.
-- Regras de negocio em Services ou Actions.
-- Operacoes demoradas em Jobs.
+### AB Contabilidade
 
-## Fora do escopo imediato
+- Cadastrar empresas.
+- Gerenciar clientes.
+- Ver notas por período.
+- Baixar XMLs em lote.
+- Ver certificados vencendo.
+- Ver rejeições.
+- Gerar relatórios.
+- Controlar limite mensal.
 
-- Implementacao de NFePHP.
-- Telas complexas.
-- Billing em producao.
-- Reaproveitamento tecnico do legado.
+### Salta Digital
+
+- Gerenciar tenants.
+- Acompanhar logs.
+- Corrigir falhas.
+- Auditar operações.
+- Evoluir produto.
+
+## Requisitos não funcionais
+
+- Segurança.
+- Auditoria.
+- LGPD.
+- Isolamento multiempresa.
+- Armazenamento seguro.
+- Compatibilidade PHP 8.2/8.3.
+- Banco utf8mb4.
+- Deploy seguro.

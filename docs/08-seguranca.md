@@ -1,36 +1,35 @@
-# Seguranca
+# 08 — Segurança
 
-## Multiempresa
+## Regras obrigatórias
 
-- Toda consulta de dado de negocio deve respeitar a empresa ativa.
-- Policies devem validar acesso por usuario e empresa.
-- Services e Actions nao devem confiar apenas em filtros vindos da tela.
-- Testes devem cobrir tentativas de acesso entre empresas.
+- Nunca armazenar senha em texto puro.
+- Nunca armazenar certificado em `public`.
+- Nunca versionar `.env`.
+- Nunca usar SQL concatenado.
+- Nunca usar bloqueio financeiro apenas por frontend.
+- Nunca deixar `APP_DEBUG=true` em produção.
+- Nunca expor stack trace ao usuário.
 
 ## Certificados digitais
 
-- Certificados nunca devem ser armazenados em pasta publica.
-- Senhas de certificados nao devem ser gravadas em texto puro.
-- Acesso a certificados deve ser auditado.
-- Rotinas de emissao devem usar storage privado.
+- Armazenar PFX em storage privado.
+- Criptografar arquivo.
+- Criptografar senha separadamente.
+- Auditar uso do certificado.
+- Alertar vencimento.
+- Validar extensão, MIME e conteúdo.
 
-## Entrada e persistencia
+## XML fiscal
 
-- Toda entrada de usuario deve passar por Form Request.
-- Nunca usar SQL concatenado.
-- Preferir Eloquent ou Query Builder.
-- SQL cru apenas com bindings.
+- XML autorizado é documento principal.
+- Armazenar em pasta privada.
+- Auditar download.
+- Permitir exportação por período.
+- DANFE é derivado e pode ser regenerado.
 
 ## LGPD
 
-- Coletar somente dados necessarios.
-- Restringir acesso a dados pessoais.
-- Registrar acoes sensiveis em auditoria.
-- Evitar dados pessoais desnecessarios em logs.
-
-## Deploy seguro
-
-- `APP_DEBUG=false` em producao.
-- Credenciais apenas em variaveis de ambiente.
-- HTTPS obrigatorio em producao.
-- Permissao minima para arquivos e diretorios.
+- Registrar finalidade de tratamento.
+- Restringir acesso por perfil.
+- Auditar operações.
+- Permitir retenção conforme obrigação fiscal.

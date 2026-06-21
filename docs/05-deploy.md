@@ -1,43 +1,54 @@
-# Deploy
+# 05 — Deploy
 
-## Premissas
+## Desenvolvimento local
 
-- Deploy futuro podera ocorrer em subdominio da AB Contabilidade na Locaweb.
-- A aplicacao deve permanecer fora de diretorios publicos do servidor.
-- Apenas `public/` deve ser exposto pelo web server.
-- Certificados, XMLs e arquivos temporarios sensiveis devem ficar em storage privado.
+Pasta recomendada:
 
-## Banco
+```text
+C:\dev\ab-emissor-nfe
+```
 
-- Banco local: `ab_emissor_nfe`.
-- Charset: `utf8mb4`.
-- Collation: `utf8mb4_unicode_ci`.
-- Nunca usar SQL concatenado.
-- SQL cru somente com bindings.
+Não usar:
 
-## Variaveis de ambiente
+```text
+C:\xampp\htdocs\ab-emissor-nfe
+```
 
-Cada ambiente devera ter `.env` proprio, sem commit de credenciais reais.
+Execução local:
 
-Variaveis importantes:
+```bash
+php artisan serve --host=127.0.0.1 --port=8001
+```
 
-- `APP_ENV`
-- `APP_DEBUG`
-- `APP_URL`
-- `DB_CONNECTION`
-- `DB_HOST`
-- `DB_DATABASE`
-- `DB_USERNAME`
-- `DB_PASSWORD`
-- `QUEUE_CONNECTION`
-- `CACHE_STORE`
-- `SESSION_DRIVER`
+## Banco local
 
-## Processo esperado
+```sql
+CREATE DATABASE ab_emissor_nfe
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+```
 
-- Instalar dependencias PHP com Composer.
-- Configurar `.env`.
-- Rodar migrations.
-- Rodar cache de configuracao em producao.
-- Configurar cron do Laravel Scheduler quando necessario.
-- Configurar worker de fila quando houver Jobs fiscais.
+## Homologação Locaweb
+
+Preferir subdomínio:
+
+```text
+emissor.abcont.cnt.br
+```
+
+O document root deve apontar para:
+
+```text
+/public
+```
+
+## Produção
+
+Para operação fiscal madura, considerar VPS/cloud com:
+
+- PHP-FPM;
+- Nginx ou Apache;
+- worker de fila;
+- storage privado;
+- backup automático;
+- monitoramento.

@@ -1,33 +1,37 @@
-# Riscos
+# 04 — Riscos
 
-## Fiscal
+## Riscos técnicos
 
-- Mudancas em regras da SEFAZ, schemas, certificados e ambientes autorizadores.
-- Divergencia entre dados exibidos e XML autorizado.
-- Cancelamentos, inutilizacoes e cartas de correcao tratados sem rastreabilidade.
+- Complexidade fiscal da NF-e.
+- Regras fiscais variáveis.
+- Limitações da Locaweb.
+- Certificados digitais em nuvem.
+- Falta de fila/worker em hospedagem compartilhada.
+- MySQL 5.7 em produção.
+- PHP local diferente do PHP de produção.
 
-Mitigacao: tratar XML autorizado como fonte da verdade, versionar regras fiscais internas e manter eventos fiscais auditaveis.
+## Riscos fiscais
 
-## Seguranca
+- XML incorreto.
+- Numeração inconsistente.
+- Rejeição SEFAZ.
+- Falha de inutilização.
+- Certificado vencido.
+- Regra tributária hardcoded.
 
-- Vazamento entre empresas.
-- Exposicao de certificados digitais.
-- Armazenamento de XMLs em caminho publico.
-- Logs contendo dados sensiveis.
+## Riscos operacionais
 
-Mitigacao: policies, escopos por empresa, storage privado, criptografia quando aplicavel e auditoria.
+- Um único programador responsável.
+- Baixa disponibilidade de tempo.
+- Escopo crescer antes do MVP.
+- Suporte fiscal virar suporte tributário.
 
-## Operacional
+## Mitigações
 
-- Ambiente local diferente do deploy futuro.
-- Dependencia de fila para operacoes fiscais.
-- Timeouts em chamadas externas.
-
-Mitigacao: Jobs, retries, logs estruturados, documentacao de deploy e validacao de ambiente.
-
-## Produto
-
-- Escopo crescer antes da base multiempresa estar segura.
-- Billing futuro influenciar prematuramente a modelagem.
-
-Mitigacao: separar billing como modulo futuro e priorizar fundacao fiscal segura.
+- Começar por homologação.
+- Criar logs robustos.
+- Usar fila.
+- Versionar tudo.
+- Documentar decisões.
+- Limitar escopo inicial.
+- Não vender SaaS antes de estabilizar uso interno.

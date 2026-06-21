@@ -1,44 +1,63 @@
-# Fiscal NF-e Modelo 55
+# 09 — Fiscal NF-e
 
-## Escopo
+## Escopo inicial
 
-O AB Emissor NF-e sera preparado para emissao auxiliar de NF-e modelo 55.
+NF-e modelo 55.
 
-NFePHP nao sera implementado nesta etapa. A integracao sera planejada para fase posterior, apos a fundacao multiempresa, seguranca e modelagem base.
+## Fora do escopo inicial
 
-## Fonte da verdade
+- NFC-e;
+- NFS-e;
+- CT-e;
+- MDF-e.
 
-O XML autorizado e seu protocolo serao a fonte da verdade fiscal.
+## Fluxo
 
-Dados em tabelas, telas e relatorios serao indices, resumos operacionais ou copias controladas, mas nao substituem o XML autorizado.
+```text
+Rascunho
+  -> validação
+  -> reserva de número
+  -> geração XML
+  -> assinatura
+  -> transmissão
+  -> consulta retorno
+  -> autorização ou rejeição
+  -> armazenamento XML autorizado
+  -> DANFE
+```
 
-## Ciclo previsto
+## Numeração
 
-- Rascunho.
-- Validacao interna.
-- Assinatura.
-- Transmissao.
-- Consulta.
-- Autorizacao.
-- Armazenamento do XML autorizado.
-- Eventos fiscais como cancelamento, carta de correcao e inutilizacao, quando aplicavel.
+Nunca usar:
 
-## Eventos fiscais
+```text
+max(id)+1
+```
 
-Eventos devem ser registrados com:
+Usar tabela própria de série e reserva transacional de número.
 
-- Empresa.
-- NF-e vinculada.
-- Tipo de evento.
-- Status.
-- Protocolo quando houver.
-- XML de envio e retorno quando houver.
-- Usuario ou Job responsavel.
+## Status
 
-## Cuidados
+```text
+rascunho
+validando
+numero_reservado
+xml_gerado
+assinado
+em_fila
+transmitindo
+autorizado
+rejeitado
+denegado
+cancelado
+inutilizado
+erro
+```
 
-- Validar dados antes da transmissao.
-- Evitar operacoes fiscais sincronas longas em requisicoes HTTP.
-- Usar Jobs para comunicacao com SEFAZ.
-- Armazenar XMLs em local privado.
-- Preservar historico de status e eventos.
+## Eventos futuros
+
+- cancelamento;
+- inutilização;
+- carta de correção;
+- consulta;
+- manifestação, se aplicável ao escopo futuro.
