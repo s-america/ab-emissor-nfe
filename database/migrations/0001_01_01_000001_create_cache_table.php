@@ -27,13 +27,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('ABE_Caches', function (Blueprint $table): void {
+        Schema::create('SIS_Caches', function (Blueprint $table): void {
             $table->string('key')->primary();
             $table->mediumText('value');
             $table->integer('expiration')->index();
         });
 
-        Schema::create('ABE_CacheLocks', function (Blueprint $table): void {
+        Schema::create('SIS_CacheLocks', function (Blueprint $table): void {
             $table->string('key')->primary();
             $table->string('owner');
             $table->integer('expiration')->index();
@@ -42,7 +42,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('ABE_CacheLocks');
-        Schema::dropIfExists('ABE_Caches');
+        Schema::dropIfExists('SIS_CacheLocks');
+        Schema::dropIfExists('SIS_Caches');
     }
 };

@@ -23,6 +23,7 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -32,7 +33,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    protected $table = 'ABE_Usuarios';
+    protected $table = 'SIS_Usuarios';
 
     /**
      * @var list<string>
@@ -62,5 +63,18 @@ class User extends Authenticatable
             'password' => 'hashed',
             'ativo' => 'boolean',
         ];
+    }
+
+    public function tenants(): BelongsToMany
+    {
+        return $this->belongsToMany(Tenant::class, 'SIS_TenantUsuarios', 'Usuario_Id', 'Tenant_Id')
+            ->withPivot(['perfil', 'ativo'])
+            ->withTimestamps();
+    }
+
+    public function papeis(): BelongsToMany
+    {
+        return $this->belongsToMany(Papel::class, 'SIS_UsuarioPapeis', 'Usuario_Id', 'Papel_Id')
+            ->withTimestamps();
     }
 }

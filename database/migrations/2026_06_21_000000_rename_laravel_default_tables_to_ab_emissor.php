@@ -13,7 +13,7 @@
  *          O sistema pode utilizar bibliotecas e tecnologias open source de terceiros, respeitando suas respectivas licencas.
  * @copyright (c) 2026 Salta Digital
  *
- * @see /docs/07-modelagem-banco.md
+ * @see /docs/arquitetura-ab-emissor-nfe-v1.0.md
  * @deprecated false
  */
 
@@ -27,22 +27,30 @@ return new class extends Migration
 {
     public function up(): void
     {
-        $this->renameTableIfNeeded('users', 'ABE_Usuarios');
-        $this->renameTableIfNeeded('password_reset_tokens', 'ABE_PasswordResetTokens');
-        $this->renameTableIfNeeded('sessions', 'ABE_Sessoes');
-        $this->renameTableIfNeeded('cache', 'ABE_Caches');
-        $this->renameTableIfNeeded('cache_locks', 'ABE_CacheLocks');
-        $this->renameTableIfNeeded('jobs', 'ABE_Jobs');
-        $this->renameTableIfNeeded('job_batches', 'ABE_JobBatches');
-        $this->renameTableIfNeeded('failed_jobs', 'ABE_FailedJobs');
+        $this->renameTableIfNeeded('users', 'SIS_Usuarios');
+        $this->renameTableIfNeeded('ABE_Usuarios', 'SIS_Usuarios');
+        $this->renameTableIfNeeded('password_reset_tokens', 'SIS_PasswordResetTokens');
+        $this->renameTableIfNeeded('ABE_PasswordResetTokens', 'SIS_PasswordResetTokens');
+        $this->renameTableIfNeeded('sessions', 'SIS_Sessoes');
+        $this->renameTableIfNeeded('ABE_Sessoes', 'SIS_Sessoes');
+        $this->renameTableIfNeeded('cache', 'SIS_Caches');
+        $this->renameTableIfNeeded('ABE_Caches', 'SIS_Caches');
+        $this->renameTableIfNeeded('cache_locks', 'SIS_CacheLocks');
+        $this->renameTableIfNeeded('ABE_CacheLocks', 'SIS_CacheLocks');
+        $this->renameTableIfNeeded('jobs', 'SIS_Jobs');
+        $this->renameTableIfNeeded('ABE_Jobs', 'SIS_Jobs');
+        $this->renameTableIfNeeded('job_batches', 'SIS_JobBatches');
+        $this->renameTableIfNeeded('ABE_JobBatches', 'SIS_JobBatches');
+        $this->renameTableIfNeeded('failed_jobs', 'SIS_FailedJobs');
+        $this->renameTableIfNeeded('ABE_FailedJobs', 'SIS_FailedJobs');
 
-        if (Schema::hasTable('ABE_Usuarios')) {
-            Schema::table('ABE_Usuarios', function (Blueprint $table): void {
-                if (Schema::hasColumn('ABE_Usuarios', 'name') && ! Schema::hasColumn('ABE_Usuarios', 'nome')) {
+        if (Schema::hasTable('SIS_Usuarios')) {
+            Schema::table('SIS_Usuarios', function (Blueprint $table): void {
+                if (Schema::hasColumn('SIS_Usuarios', 'name') && ! Schema::hasColumn('SIS_Usuarios', 'nome')) {
                     $table->renameColumn('name', 'nome');
                 }
 
-                if (! Schema::hasColumn('ABE_Usuarios', 'ativo')) {
+                if (! Schema::hasColumn('SIS_Usuarios', 'ativo')) {
                     $table->boolean('ativo')->default(true)->after('password');
                 }
             });
@@ -51,26 +59,26 @@ return new class extends Migration
 
     public function down(): void
     {
-        if (Schema::hasTable('ABE_Usuarios')) {
-            Schema::table('ABE_Usuarios', function (Blueprint $table): void {
-                if (Schema::hasColumn('ABE_Usuarios', 'nome') && ! Schema::hasColumn('ABE_Usuarios', 'name')) {
+        if (Schema::hasTable('SIS_Usuarios')) {
+            Schema::table('SIS_Usuarios', function (Blueprint $table): void {
+                if (Schema::hasColumn('SIS_Usuarios', 'nome') && ! Schema::hasColumn('SIS_Usuarios', 'name')) {
                     $table->renameColumn('nome', 'name');
                 }
 
-                if (Schema::hasColumn('ABE_Usuarios', 'ativo')) {
+                if (Schema::hasColumn('SIS_Usuarios', 'ativo')) {
                     $table->dropColumn('ativo');
                 }
             });
         }
 
-        $this->renameTableIfNeeded('ABE_FailedJobs', 'failed_jobs');
-        $this->renameTableIfNeeded('ABE_JobBatches', 'job_batches');
-        $this->renameTableIfNeeded('ABE_Jobs', 'jobs');
-        $this->renameTableIfNeeded('ABE_CacheLocks', 'cache_locks');
-        $this->renameTableIfNeeded('ABE_Caches', 'cache');
-        $this->renameTableIfNeeded('ABE_Sessoes', 'sessions');
-        $this->renameTableIfNeeded('ABE_PasswordResetTokens', 'password_reset_tokens');
-        $this->renameTableIfNeeded('ABE_Usuarios', 'users');
+        $this->renameTableIfNeeded('SIS_FailedJobs', 'failed_jobs');
+        $this->renameTableIfNeeded('SIS_JobBatches', 'job_batches');
+        $this->renameTableIfNeeded('SIS_Jobs', 'jobs');
+        $this->renameTableIfNeeded('SIS_CacheLocks', 'cache_locks');
+        $this->renameTableIfNeeded('SIS_Caches', 'cache');
+        $this->renameTableIfNeeded('SIS_Sessoes', 'sessions');
+        $this->renameTableIfNeeded('SIS_PasswordResetTokens', 'password_reset_tokens');
+        $this->renameTableIfNeeded('SIS_Usuarios', 'users');
     }
 
     private function renameTableIfNeeded(string $from, string $to): void
