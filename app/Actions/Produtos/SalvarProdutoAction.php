@@ -38,7 +38,7 @@ class SalvarProdutoAction
      */
     public function criar(Empresa $empresa, User $usuario, array $dados, Request $request): Produto
     {
-        $produto = Produto::query()->create($dados + ['Empresa_Id' => $empresa->id]);
+        $produto = Produto::query()->create($dados + ['empresa_id' => $empresa->id]);
 
         $this->registrarAuditoria('produto.criado', $empresa, $usuario, $produto, $request);
 
@@ -63,7 +63,7 @@ class SalvarProdutoAction
         $this->auditoriaService->registrar(
             acao: $acao,
             usuarioId: (int) $usuario->id,
-            tenantId: (int) $empresa->Tenant_Id,
+            tenantId: (int) $empresa->tenant_id,
             empresaId: (int) $empresa->id,
             entidadeTipo: Produto::class,
             entidadeId: (int) $produto->id,

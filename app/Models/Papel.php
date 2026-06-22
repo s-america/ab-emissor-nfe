@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Papel extends Model
 {
-    protected $table = 'SIS_Papeis';
+    protected $table = 'sis_papeis';
 
     protected $fillable = [
         'nome',
@@ -37,7 +37,8 @@ class Papel extends Model
 
     public function permissoes(): BelongsToMany
     {
-        return $this->belongsToMany(Permissao::class, 'SIS_PapelPermissoes', 'Papel_Id', 'Permissao_Id')
+        return $this->belongsToMany(Permissao::class, 'sis_papel_permissoes', 'papel_id', 'permissao_id')
             ->withTimestamps();
     }
 }
+

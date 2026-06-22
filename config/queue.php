@@ -38,7 +38,7 @@ return [
         'database' => [
             'driver' => 'database',
             'connection' => env('DB_QUEUE_CONNECTION'),
-            'table' => env('DB_QUEUE_TABLE', 'SIS_Jobs'),
+            'table' => env('DB_QUEUE_TABLE', 'sis_jobs'),
             'queue' => env('DB_QUEUE', 'default'),
             'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 90),
             'after_commit' => false,
@@ -104,7 +104,7 @@ return [
 
     'batching' => [
         'database' => env('DB_CONNECTION', 'sqlite'),
-        'table' => env('DB_QUEUE_BATCHES_TABLE', 'SIS_JobBatches'),
+        'table' => env('DB_QUEUE_BATCHES_TABLE', 'sis_job_batches'),
     ],
 
     /*
@@ -123,7 +123,8 @@ return [
     'failed' => [
         'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
         'database' => env('DB_CONNECTION', 'sqlite'),
-        'table' => env('DB_QUEUE_FAILED_TABLE', 'SIS_FailedJobs'),
+        'table' => env('DB_QUEUE_FAILED_TABLE', 'sis_failed_jobs'),
     ],
 
 ];
+

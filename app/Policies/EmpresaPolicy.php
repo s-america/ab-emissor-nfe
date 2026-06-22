@@ -29,7 +29,7 @@ class EmpresaPolicy
     public function view(User $usuario, Empresa $empresa): bool
     {
         return $usuario->tenants()
-            ->where('SIS_Tenants.id', $empresa->Tenant_Id)
+            ->where('sis_tenants.id', $empresa->tenant_id)
             ->wherePivot('ativo', true)
             ->exists();
     }
@@ -37,7 +37,7 @@ class EmpresaPolicy
     public function update(User $usuario, Empresa $empresa): bool
     {
         return $usuario->tenants()
-            ->where('SIS_Tenants.id', $empresa->Tenant_Id)
+            ->where('sis_tenants.id', $empresa->tenant_id)
             ->wherePivot('ativo', true)
             ->wherePivotIn('perfil', ['admin_tecnico', 'admin_contabilidade'])
             ->exists();

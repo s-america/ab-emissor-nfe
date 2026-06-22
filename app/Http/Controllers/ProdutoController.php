@@ -46,7 +46,7 @@ class ProdutoController extends Controller
         }
 
         $produtos = Produto::query()
-            ->where('Empresa_Id', $empresa->id)
+            ->where('empresa_id', $empresa->id)
             ->when($request->string('busca')->toString() !== '', function ($query) use ($request): void {
                 $busca = $request->string('busca')->toString();
                 $query->where(function ($subquery) use ($busca): void {
@@ -90,7 +90,7 @@ class ProdutoController extends Controller
     public function edit(Produto $produto): View|RedirectResponse
     {
         $empresa = $this->empresaAtualOrFail();
-        abort_unless((int) $produto->Empresa_Id === (int) $empresa->id, 403);
+        abort_unless((int) $produto->empresa_id === (int) $empresa->id, 403);
 
         return view('produtos.form', compact('empresa', 'produto'));
     }
@@ -98,7 +98,7 @@ class ProdutoController extends Controller
     public function update(SalvarProdutoRequest $request, Produto $produto, SalvarProdutoAction $action): RedirectResponse
     {
         $empresa = $this->empresaAtualOrFail();
-        abort_unless((int) $produto->Empresa_Id === (int) $empresa->id, 403);
+        abort_unless((int) $produto->empresa_id === (int) $empresa->id, 403);
 
         /** @var User $usuario */
         $usuario = Auth::user();

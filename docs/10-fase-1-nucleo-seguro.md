@@ -14,10 +14,10 @@ Implementar a primeira camada operacional segura do AB Emissor NF-e: autenticaca
 - Service de auditoria inicial.
 - Policy inicial para acesso a empresas por tenant.
 - Migrations alinhadas com os prefixos de dominio da arquitetura v1.0:
-  - `SIS_` para nucleo do sistema.
-  - `CAD_` para cadastros.
-  - `FIS_` para nucleo fiscal.
-  - `LOG_` para auditoria.
+  - `sis_` para nucleo do sistema.
+  - `cad_` para cadastros.
+  - `fis_` para nucleo fiscal.
+  - `log_` para auditoria.
 
 ## Limites
 

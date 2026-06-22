@@ -46,7 +46,7 @@ class DestinatarioController extends Controller
         }
 
         $destinatarios = Destinatario::query()
-            ->where('Empresa_Id', $empresa->id)
+            ->where('empresa_id', $empresa->id)
             ->when($request->string('busca')->toString() !== '', function ($query) use ($request): void {
                 $busca = $request->string('busca')->toString();
                 $query->where(function ($subquery) use ($busca): void {
@@ -90,7 +90,7 @@ class DestinatarioController extends Controller
     {
         $empresa = $this->empresaAtualOrFail();
 
-        abort_unless((int) $destinatario->Empresa_Id === (int) $empresa->id, 403);
+        abort_unless((int) $destinatario->empresa_id === (int) $empresa->id, 403);
 
         return view('destinatarios.form', compact('empresa', 'destinatario'));
     }
@@ -98,7 +98,7 @@ class DestinatarioController extends Controller
     public function update(SalvarDestinatarioRequest $request, Destinatario $destinatario, SalvarDestinatarioAction $action): RedirectResponse
     {
         $empresa = $this->empresaAtualOrFail();
-        abort_unless((int) $destinatario->Empresa_Id === (int) $empresa->id, 403);
+        abort_unless((int) $destinatario->empresa_id === (int) $empresa->id, 403);
 
         /** @var User $usuario */
         $usuario = Auth::user();

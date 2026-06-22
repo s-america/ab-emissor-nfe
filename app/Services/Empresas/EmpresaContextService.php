@@ -30,14 +30,14 @@ class EmpresaContextService
     {
         $tenantIds = $usuario->tenants()
             ->wherePivot('ativo', true)
-            ->pluck('SIS_Tenants.id');
+            ->pluck('sis_tenants.id');
 
         if ($tenantIds->isEmpty()) {
             return null;
         }
 
         return Empresa::query()
-            ->whereIn('Tenant_Id', $tenantIds)
+            ->whereIn('tenant_id', $tenantIds)
             ->where('ativo', true)
             ->orderBy('razao_social')
             ->first();

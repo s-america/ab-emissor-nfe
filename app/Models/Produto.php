@@ -26,10 +26,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Produto extends Model
 {
-    protected $table = 'CAD_Produtos';
+    protected $table = 'cad_produtos';
 
     protected $fillable = [
-        'Empresa_Id',
+        'empresa_id',
         'codigo',
         'descricao',
         'ncm',
@@ -54,6 +54,6 @@ class Produto extends Model
 
     public function empresa(): BelongsTo
     {
-        return $this->belongsTo(Empresa::class, 'Empresa_Id');
+        return $this->belongsTo(Empresa::class, 'empresa_id');
     }
 }

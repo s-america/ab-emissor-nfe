@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ncm extends Model
 {
-    protected $table = 'FIS_Ncms';
+    protected $table = 'fis_ncms';
 
     protected $fillable = ['codigo', 'descricao', 'vigente_de', 'vigente_ate', 'ativo'];
 }

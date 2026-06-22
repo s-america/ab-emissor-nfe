@@ -1,17 +1,17 @@
 # AB EMISSOR NF-e
 ## Especificação Técnica, Arquitetura e Plano de Produto
-### Versão 1.0.0 — Junho 2026 | Nome do Projeto: AB Emissor NF-e
+### Versão 1.0.0 â€” Junho 2026 | Nome do Projeto: AB Emissor NF-e
 
-> **Proprietário:** Salta Digital — Sergio Figueroa `<sergio@saltadigital.com.br>`  
-> **Cliente inicial:** AB Contabilidade — Curitiba/PR — `https://www.abcont.cnt.br`  
-> **Repositório previsto:** GitHub privado — `s-america/ab-emissor-nfe`  
+> **Proprietário:** Salta Digital â€” Sergio Figueroa `<sergio@saltadigital.com.br>`  
+> **Cliente inicial:** AB Contabilidade â€” Curitiba/PR â€” `https://www.abcont.cnt.br`  
+> **Repositório previsto:** GitHub privado â€” `s-america/ab-emissor-nfe`  
 > **Modelo:** Monolítico Laravel, multiempresa, com evolução futura para SaaS fiscal  
 > **Licença:** Software comercial proprietário. Não é software livre nem open source.  
 >
 > **Cenário de desenvolvimento:**  
 > - **IDE:** Visual Studio Code + Codex  
-> - **Máquina local:** Notebook Lenovo — Intel Core i5-9300HF — Windows 10  
-> - **Servidor local existente:** XAMPP — PHP 8.2.12 — MariaDB 10.4.32  
+> - **Máquina local:** Notebook Lenovo â€” Intel Core i5-9300HF â€” Windows 10  
+> - **Servidor local existente:** XAMPP â€” PHP 8.2.12 â€” MariaDB 10.4.32  
 > - **Pasta local recomendada:** `C:\dev\ab-emissor-nfe\`  
 > - **Importante:** o projeto não deve ser criado dentro de `C:\xampp\htdocs\` para não interferir nas aplicações atuais.  
 > - **Produção/homologação futura:** Locaweb Linux, PHP 8.3 preferencialmente, MySQL 5.7.32, SSL Let's Encrypt  
@@ -20,7 +20,7 @@
 
 ---
 
-## ÍNDICE
+## ÃNDICE
 
 1. [Visão Geral do Projeto](#1-visão-geral-do-projeto)
 2. [Decisão Técnica: Reconstrução](#2-decisão-técnica-reconstrução)
@@ -40,19 +40,19 @@
 
 ---
 
-## 1. VISÃO GERAL DO PROJETO
+## 1. VISÃƒO GERAL DO PROJETO
 
-O **AB Emissor NF-e** será uma aplicação web desenvolvida em Laravel para emissão auxiliar de Nota Fiscal Eletrônica modelo 55.
+O **AB Emissor NF-e** será uma aplicação web desenvolvida em Laravel para emissão auxiliar de Nota Fiscal EletrÃ´nica modelo 55.
 
-O projeto nasce para atender inicialmente os clientes da **AB Contabilidade**, escritório localizado em Curitiba/PR e focado em empresas de pequeno porte. A necessidade surgiu porque a contabilidade começou a assumir empresas que precisam emitir nota fiscal eletrônica de mercadorias, e não apenas nota fiscal de serviço.
+O projeto nasce para atender inicialmente os clientes da **AB Contabilidade**, escritório localizado em Curitiba/PR e focado em empresas de pequeno porte. A necessidade surgiu porque a contabilidade começou a assumir empresas que precisam emitir nota fiscal eletrÃ´nica de mercadorias, e não apenas nota fiscal de serviço.
 
-A aplicação permitirá que clientes da contabilidade emitam NF-e dentro de um limite controlado, enquanto a contabilidade terá acesso aos XMLs autorizados, relatórios fiscais, histórico de emissões e informações necessárias para escrituração e conferência.
+A aplicação permitirá que clientes da contabilidade emitam NF-e dentro de um limite controlado, enquanto a contabilidade terá acesso aos XMLs autorizados, relatórios fiscais, histórico de emissões e informações necessárias para escrituração e conferÃªncia.
 
 Em uma fase futura, o sistema poderá evoluir para um SaaS comercial da **Salta Digital**, atendendo empresas avulsas do varejo e pequenas empresas que não sejam clientes contábeis.
 
 ---
 
-## 2. DECISÃO TÉCNICA: RECONSTRUÇÃO
+## 2. DECISÃƒO TÃ‰CNICA: RECONSTRUÃ‡ÃƒO
 
 O sistema legado **EmissorNFe** não será refatorado diretamente.
 
@@ -60,7 +60,7 @@ A decisão técnica oficial é:
 
 ```text
 O AB Emissor NF-e será reconstruído do zero.
-O legado será usado apenas como referência funcional, histórica e de aprendizado.
+O legado será usado apenas como referÃªncia funcional, histórica e de aprendizado.
 ```
 
 Motivos:
@@ -338,38 +338,38 @@ ab-emissor-nfe/
 
 | Prefixo | Finalidade |
 |---|---|
-| `SIS_` | Estrutura geral do sistema |
-| `CAD_` | Cadastros principais |
-| `FIS_` | Núcleo fiscal |
-| `LOG_` | Logs e auditoria |
+| `sis_` | Estrutura geral do sistema |
+| `cad_` | Cadastros principais |
+| `fis_` | Núcleo fiscal |
+| `log_` | Logs e auditoria |
 | `FIN_` | Financeiro e cobrança futura |
 | `CFG_` | Configurações |
 
 ### 7.2 Tabelas iniciais
 
 ```text
-SIS_Tenants
-SIS_Usuarios
-SIS_Papeis
-SIS_Permissoes
-SIS_UsuarioPapeis
-SIS_TenantUsuarios
+sis_tenants
+sis_usuarios
+sis_papeis
+sis_permissoes
+sis_usuario_papeis
+sis_tenant_usuarios
 
-CAD_Empresas
-CAD_Destinatarios
-CAD_Produtos
-CAD_Transportadoras
+cad_empresas
+cad_destinatarios
+cad_produtos
+cad_transportadoras
 
-FIS_CertificadosDigitais
-FIS_NfeSeries
-FIS_NfeDocumentos
-FIS_NfeItens
-FIS_NfeEventos
-FIS_NfeArquivosXml
-FIS_NfeNumeracoes
+fis_certificados_digitais
+fis_NfeSeries
+fis_nfe_documentos
+fis_NfeItens
+fis_nfe_eventos
+fis_NfeArquivosXml
+fis_NfeNumeracoes
 
-LOG_Auditorias
-LOG_EventosSistema
+log_auditorias
+log_eventos_sistema
 
 FIN_Planos
 FIN_Assinaturas
@@ -558,7 +558,7 @@ erro
 
 ## 10. ROADMAP DE DESENVOLVIMENTO
 
-### Fase 0 — Fundação do projeto
+### Fase 0 â€” Fundação do projeto
 
 - Criar projeto Laravel.
 - Criar repositório GitHub.
@@ -569,7 +569,7 @@ erro
 - Criar migrations base.
 - Definir estrutura de pastas.
 
-### Fase 1 — Núcleo seguro
+### Fase 1 â€” Núcleo seguro
 
 - Autenticação.
 - Usuários.
@@ -580,7 +580,7 @@ erro
 - Layout principal.
 - Dashboard básico.
 
-### Fase 2 — Cadastros fiscais
+### Fase 2 â€” Cadastros fiscais
 
 - Destinatários.
 - Produtos.
@@ -590,7 +590,7 @@ erro
 - NCM.
 - Regras fiscais básicas.
 
-### Fase 3 — Certificados digitais
+### Fase 3 â€” Certificados digitais
 
 - Upload seguro.
 - Criptografia.
@@ -598,7 +598,7 @@ erro
 - Leitura da validade.
 - Alerta de vencimento.
 
-### Fase 4 — Emissão NF-e homologação
+### Fase 4 â€” Emissão NF-e homologação
 
 - Criação de rascunho.
 - Itens.
@@ -609,7 +609,7 @@ erro
 - Consulta retorno.
 - DANFE.
 
-### Fase 5 — Produção assistida
+### Fase 5 â€” Produção assistida
 
 - Liberação por empresa.
 - Emissão em produção.
@@ -617,7 +617,7 @@ erro
 - Painel da contabilidade.
 - Relatórios.
 
-### Fase 6 — Operação fiscal
+### Fase 6 â€” Operação fiscal
 
 - Cancelamento.
 - Inutilização.
@@ -626,7 +626,7 @@ erro
 - Logs avançados.
 - Monitoramento.
 
-### Fase 7 — Billing futuro
+### Fase 7 â€” Billing futuro
 
 - Planos.
 - Assinaturas.
@@ -637,7 +637,7 @@ erro
 
 ---
 
-## 11. PADRÕES DE CÓDIGO E NOMENCLATURA
+## 11. PADRÃ•ES DE CÓDIGO E NOMENCLATURA
 
 ### 11.1 Cabeçalho padrão
 
@@ -672,15 +672,15 @@ declare(strict_types=1);
 | Métodos | camelCase | `sincronizarEmpresa()`, `gerarDanfe()` |
 | Classes | PascalCase | `EmpresaController`, `NfeEmissaoService` |
 | Constantes | UPPER_SNAKE | `STATUS_ATIVO`, `AMBIENTE_HOMOLOGACAO` |
-| Tabelas | `PREFIX_NomePlural` | `CAD_Empresas`, `LOG_EventosSistema` |
+| Tabelas | `prefix_nome_plural` | `cad_empresas`, `log_eventos_sistema` |
 | PK | `id` | `id` |
-| FK | `TabelaSingular_Id` | `Empresas_Id`, `Tenants_Id` |
+| FK | `TabelaSingular_Id` | `Empresas_Id`, `tenant_id` |
 | Views Blade | kebab-case | `editar-empresa.blade.php` |
 | Assets | kebab-case | `dashboard.js`, `app.css` |
 
 ---
 
-## 12. DIRETRIZES DE SEGURANÇA
+## 12. DIRETRIZES DE SEGURANÃ‡A
 
 - Nunca usar SQL concatenado.
 - Usar Eloquent ou Query Builder.
@@ -715,10 +715,10 @@ declare(strict_types=1);
 | Locaweb atual | Homologação | custo já contratado |
 | Subdomínio | Homologação | R$ 0 se já incluso |
 | Certificado A1 cliente | Por empresa | R$ 150 a R$ 350/ano |
-| VPS/cloud futura | Recomendado | R$ 40 a R$ 250/mês |
-| Storage externo | Futuro | R$ 5 a R$ 50/mês |
-| Serviço SMTP | Futuro | R$ 0 a R$ 100/mês |
-| Monitoramento | Futuro | R$ 0 a R$ 150/mês |
+| VPS/cloud futura | Recomendado | R$ 40 a R$ 250/mÃªs |
+| Storage externo | Futuro | R$ 5 a R$ 50/mÃªs |
+| Serviço SMTP | Futuro | R$ 0 a R$ 100/mÃªs |
+| Monitoramento | Futuro | R$ 0 a R$ 150/mÃªs |
 | Billing/PagBank | Fase futura | taxas por transação |
 
 ### 13.1 Leitura financeira
@@ -767,9 +767,9 @@ C:\xampp\htdocs\ab-emissor-nfe
 
 Motivo:
 
-- evitar interferência nas aplicações atuais;
+- evitar interferÃªncia nas aplicações atuais;
 - evitar mistura de projetos;
-- evitar dependência do Apache do XAMPP;
+- evitar dependÃªncia do Apache do XAMPP;
 - usar Laravel pelo servidor interno.
 
 Comando de execução local:
@@ -794,7 +794,7 @@ CREATE DATABASE ab_emissor_nfe
 
 ### 14.3 Deploy futuro
 
-Preferência:
+PreferÃªncia:
 
 ```text
 emissor.abcont.cnt.br
@@ -812,17 +812,17 @@ Nunca apontar o domínio para a raiz do projeto Laravel.
 
 ## 15. PROMPTS INICIAIS PARA CODEX
 
-### PROMPT FASE 0-A — Documentação e estrutura inicial
+### PROMPT FASE 0-A â€” Documentação e estrutura inicial
 
 ```text
-Você é um engenheiro de software sênior especialista em Laravel, PHP 8.2/8.3, arquitetura SaaS multiempresa, NF-e modelo 55, NFePHP, segurança web, LGPD e sistemas fiscais brasileiros.
+VocÃª é um engenheiro de software sÃªnior especialista em Laravel, PHP 8.2/8.3, arquitetura SaaS multiempresa, NF-e modelo 55, NFePHP, segurança web, LGPD e sistemas fiscais brasileiros.
 
 Estamos iniciando um novo projeto chamado AB Emissor NF-e.
 
 Contexto:
 - Projeto Laravel novo.
 - Não é refatoração do legado EmissorNFe.
-- O legado será usado apenas como referência funcional.
+- O legado será usado apenas como referÃªncia funcional.
 - O sistema será uma plataforma para emissão auxiliar de NF-e modelo 55 para clientes da AB Contabilidade, com possibilidade futura de SaaS comercial pela Salta Digital.
 - O ambiente local usa Windows 10, XAMPP com PHP 8.2.12 e MariaDB 10.4.32.
 - O projeto não deve ficar em /xampp/htdocs.
@@ -847,7 +847,7 @@ Antes de alterar qualquer coisa estrutural, explique brevemente o plano de arqui
 
 ---
 
-## APÊNDICE A — DECISÕES OFICIAIS
+## APÃŠNDICE A â€” DECISÃ•ES OFICIAIS
 
 | Decisão | Status |
 |---|---|
@@ -857,7 +857,8 @@ Antes de alterar qualquer coisa estrutural, explique brevemente o plano de arqui
 | Usar MariaDB local existente | Aprovado |
 | GitHub `s-america` | Aprovado |
 | Começar por documentação | Aprovado |
-| Legado apenas como referência | Aprovado |
+| Legado apenas como referÃªncia | Aprovado |
 | Produto proprietário | Aprovado |
 | NF-e modelo 55 primeiro | Aprovado |
 | SaaS comercial somente fase futura | Aprovado |
+

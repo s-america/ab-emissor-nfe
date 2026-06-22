@@ -26,10 +26,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Empresa extends Model
 {
-    protected $table = 'CAD_Empresas';
+    protected $table = 'cad_empresas';
 
     protected $fillable = [
-        'Tenant_Id',
+        'tenant_id',
         'razao_social',
         'nome_fantasia',
         'cnpj',
@@ -52,6 +52,6 @@ class Empresa extends Model
 
     public function tenant(): BelongsTo
     {
-        return $this->belongsTo(Tenant::class, 'Tenant_Id');
+        return $this->belongsTo(Tenant::class, 'tenant_id');
     }
 }

@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permissao extends Model
 {
-    protected $table = 'SIS_Permissoes';
+    protected $table = 'sis_permissoes';
 
     protected $fillable = [
         'nome',

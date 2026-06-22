@@ -2,7 +2,7 @@
 /**
  * PROJECT: AB Emissor
  * TYPE: Model
- * FILE: app/Models/NaturezaOperacao.php
+ * FILE: app/Models/NfeTentativaTransmissao.php
  *
  * @package ABEmissor\Models
  * @author  Sergio Figueroa <sergio@saltadigital.com.br>
@@ -10,10 +10,9 @@
  * @version 1.0.0
  * @license Software comercial proprietario. Este produto nao e software livre nem open source.
  *          Seu uso, copia, distribuicao, modificacao ou comercializacao dependem de autorizacao expressa da Salta Digital.
- *          O sistema pode utilizar bibliotecas e tecnologias open source de terceiros, respeitando suas respectivas licencas.
  * @copyright (c) 2026 Salta Digital
  *
- * @see /docs/10-fase-2-cadastros-fiscais.md
+ * @see /docs/11-adequacao-formatos-atuais-nfe.md
  * @deprecated false
  */
 
@@ -23,16 +22,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NaturezaOperacao extends Model
+class NfeTentativaTransmissao extends Model
 {
-    protected $table = 'cad_naturezas_operacao';
+    protected $table = 'fis_nfe_tentativas_transmissao';
 
-    protected $fillable = [
-        'empresa_id',
-        'descricao',
-        'tipo_operacao',
-        'cfop_padrao',
-        'ativo',
-    ];
+    protected $fillable = ['nfe_documento_id', 'ambiente', 'tipo_emissao', 'status', 'codigo_retorno', 'mensagem_retorno'];
 }
-

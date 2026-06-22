@@ -40,9 +40,9 @@ class AuditoriaService
         ?Request $request = null,
     ): void {
         Auditoria::query()->create([
-            'Tenant_Id' => $tenantId,
-            'Empresa_Id' => $empresaId,
-            'Usuario_Id' => $usuarioId,
+            'tenant_id' => $tenantId,
+            'empresa_id' => $empresaId,
+            'usuario_id' => $usuarioId,
             'acao' => $acao,
             'entidade_tipo' => $entidadeTipo,
             'entidade_id' => $entidadeId,

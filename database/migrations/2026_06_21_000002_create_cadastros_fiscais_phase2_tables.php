@@ -27,7 +27,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('CAD_Destinatarios', function (Blueprint $table): void {
+        Schema::table('cad_destinatarios', function (Blueprint $table): void {
             $table->string('indicador_ie', 20)->default('nao_contribuinte')->after('inscricao_estadual');
             $table->string('logradouro')->nullable()->after('telefone');
             $table->string('numero', 20)->nullable()->after('logradouro');
@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('cep', 8)->nullable()->after('uf');
         });
 
-        Schema::table('CAD_Produtos', function (Blueprint $table): void {
+        Schema::table('cad_produtos', function (Blueprint $table): void {
             $table->string('cest', 7)->nullable()->after('ncm');
             $table->string('origem', 2)->default('0')->after('unidade_comercial');
             $table->string('cst_csosn', 4)->nullable()->after('origem');
@@ -47,9 +47,9 @@ return new class extends Migration
             $table->string('cst_cofins', 2)->nullable()->after('cst_pis');
         });
 
-        Schema::create('CAD_Transportadoras', function (Blueprint $table): void {
+        Schema::create('cad_transportadoras', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('Empresa_Id')->constrained('CAD_Empresas')->restrictOnDelete();
+            $table->foreignId('empresa_id')->constrained('cad_empresas')->restrictOnDelete();
             $table->string('nome_razao_social');
             $table->string('cpf_cnpj', 14)->index();
             $table->string('inscricao_estadual', 20)->nullable();
@@ -57,21 +57,21 @@ return new class extends Migration
             $table->string('telefone', 20)->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();
-            $table->unique(['Empresa_Id', 'cpf_cnpj']);
+            $table->unique(['empresa_id', 'cpf_cnpj']);
         });
 
-        Schema::create('CAD_NaturezasOperacao', function (Blueprint $table): void {
+        Schema::create('cad_naturezas_operacao', function (Blueprint $table): void {
             $table->id();
-            $table->foreignId('Empresa_Id')->constrained('CAD_Empresas')->restrictOnDelete();
+            $table->foreignId('empresa_id')->constrained('cad_empresas')->restrictOnDelete();
             $table->string('descricao');
             $table->string('tipo_operacao', 20)->default('saida');
             $table->string('cfop_padrao', 4)->nullable();
             $table->boolean('ativo')->default(true);
             $table->timestamps();
-            $table->unique(['Empresa_Id', 'descricao']);
+            $table->unique(['empresa_id', 'descricao']);
         });
 
-        Schema::create('FIS_Cfops', function (Blueprint $table): void {
+        Schema::create('fis_cfops', function (Blueprint $table): void {
             $table->id();
             $table->string('codigo', 4)->unique();
             $table->string('descricao');
@@ -80,7 +80,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('FIS_Ncms', function (Blueprint $table): void {
+        Schema::create('fis_ncms', function (Blueprint $table): void {
             $table->id();
             $table->string('codigo', 8)->unique();
             $table->string('descricao');
@@ -93,16 +93,16 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('FIS_Ncms');
-        Schema::dropIfExists('FIS_Cfops');
-        Schema::dropIfExists('CAD_NaturezasOperacao');
-        Schema::dropIfExists('CAD_Transportadoras');
+        Schema::dropIfExists('fis_ncms');
+        Schema::dropIfExists('fis_cfops');
+        Schema::dropIfExists('cad_naturezas_operacao');
+        Schema::dropIfExists('cad_transportadoras');
 
-        Schema::table('CAD_Produtos', function (Blueprint $table): void {
+        Schema::table('cad_produtos', function (Blueprint $table): void {
             $table->dropColumn(['cest', 'origem', 'cst_csosn', 'cst_pis', 'cst_cofins']);
         });
 
-        Schema::table('CAD_Destinatarios', function (Blueprint $table): void {
+        Schema::table('cad_destinatarios', function (Blueprint $table): void {
             $table->dropColumn([
                 'indicador_ie',
                 'logradouro',
@@ -117,3 +117,4 @@ return new class extends Migration
         });
     }
 };
+

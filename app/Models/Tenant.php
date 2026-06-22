@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tenant extends Model
 {
-    protected $table = 'SIS_Tenants';
+    protected $table = 'sis_tenants';
 
     protected $fillable = [
         'nome',
@@ -45,13 +45,14 @@ class Tenant extends Model
 
     public function usuarios(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'SIS_TenantUsuarios', 'Tenant_Id', 'Usuario_Id')
+        return $this->belongsToMany(User::class, 'sis_tenant_usuarios', 'tenant_id', 'usuario_id')
             ->withPivot(['perfil', 'ativo'])
             ->withTimestamps();
     }
 
     public function empresas(): HasMany
     {
-        return $this->hasMany(Empresa::class, 'Tenant_Id');
+        return $this->hasMany(Empresa::class, 'tenant_id');
     }
 }
+

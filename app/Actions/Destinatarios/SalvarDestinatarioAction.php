@@ -38,7 +38,7 @@ class SalvarDestinatarioAction
      */
     public function criar(Empresa $empresa, User $usuario, array $dados, Request $request): Destinatario
     {
-        $destinatario = Destinatario::query()->create($dados + ['Empresa_Id' => $empresa->id]);
+        $destinatario = Destinatario::query()->create($dados + ['empresa_id' => $empresa->id]);
 
         $this->registrarAuditoria('destinatario.criado', $empresa, $usuario, $destinatario, $request);
 
@@ -63,7 +63,7 @@ class SalvarDestinatarioAction
         $this->auditoriaService->registrar(
             acao: $acao,
             usuarioId: (int) $usuario->id,
-            tenantId: (int) $empresa->Tenant_Id,
+            tenantId: (int) $empresa->tenant_id,
             empresaId: (int) $empresa->id,
             entidadeTipo: Destinatario::class,
             entidadeId: (int) $destinatario->id,

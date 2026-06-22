@@ -1,4 +1,4 @@
-# 07 — Modelagem Inicial do Banco de Dados
+# 07 â€” Modelagem Inicial do Banco de Dados
 
 ## Banco
 
@@ -12,38 +12,38 @@ CREATE DATABASE ab_emissor_nfe
 
 | Prefixo | Finalidade |
 |---|---|
-| SIS_ | Sistema |
-| CAD_ | Cadastros |
-| FIS_ | Fiscal |
-| LOG_ | Logs |
+| sis_ | Sistema |
+| cad_ | Cadastros |
+| fis_ | Fiscal |
+| log_ | Logs |
 | FIN_ | Financeiro |
-| CFG_ | Configurações |
+| CFG_ | ConfiguraÃ§Ãµes |
 
 ## Tabelas
 
 ```text
-SIS_Tenants
-SIS_Usuarios
-SIS_Papeis
-SIS_Permissoes
-SIS_UsuarioPapeis
-SIS_TenantUsuarios
+sis_tenants
+sis_usuarios
+sis_papeis
+sis_permissoes
+sis_usuario_papeis
+sis_tenant_usuarios
 
-CAD_Empresas
-CAD_Destinatarios
-CAD_Produtos
-CAD_Transportadoras
+cad_empresas
+cad_destinatarios
+cad_produtos
+cad_transportadoras
 
-FIS_CertificadosDigitais
-FIS_NfeSeries
-FIS_NfeDocumentos
-FIS_NfeItens
-FIS_NfeEventos
-FIS_NfeArquivosXml
-FIS_NfeNumeracoes
+fis_certificados_digitais
+fis_NfeSeries
+fis_nfe_documentos
+fis_NfeItens
+fis_nfe_eventos
+fis_NfeArquivosXml
+fis_NfeNumeracoes
 
-LOG_Auditorias
-LOG_EventosSistema
+log_auditorias
+log_eventos_sistema
 
 FIN_Planos
 FIN_Assinaturas
@@ -61,5 +61,6 @@ CFG_Configuracoes
 - Campos em PascalCase.
 - Timestamps Laravel: `created_at`, `updated_at`.
 - Engine InnoDB.
-- Não usar `max(id)+1` para numeração fiscal.
-- XML autorizado é a fonte da verdade.
+- NÃ£o usar `max(id)+1` para numeraÃ§Ã£o fiscal.
+- XML autorizado Ã© a fonte da verdade.
+

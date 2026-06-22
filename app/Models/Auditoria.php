@@ -25,12 +25,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Auditoria extends Model
 {
-    protected $table = 'LOG_Auditorias';
+    protected $table = 'log_auditorias';
 
     protected $fillable = [
-        'Tenant_Id',
-        'Empresa_Id',
-        'Usuario_Id',
+        'tenant_id',
+        'empresa_id',
+        'usuario_id',
         'acao',
         'entidade_tipo',
         'entidade_id',

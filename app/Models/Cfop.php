@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cfop extends Model
 {
-    protected $table = 'FIS_Cfops';
+    protected $table = 'fis_cfops';
 
     protected $fillable = ['codigo', 'descricao', 'tipo_operacao', 'ativo'];
 }

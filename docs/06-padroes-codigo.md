@@ -33,7 +33,7 @@ declare(strict_types=1);
 | Métodos | camelCase | `sincronizarEmpresa()`, `gerarDanfe()` |
 | Classes | PascalCase | `EmpresaController`, `NfeEmissaoService` |
 | Constantes | UPPER_SNAKE | `STATUS_ATIVO` |
-| Tabelas | `PREFIX_NomePlural` | `CAD_Empresas` |
+| Tabelas | `prefix_nome_plural` | `cad_empresas` |
 | PKs | `id` | `id` |
 | FKs | `TabelaSingular_Id` | `Empresas_Id` |
 | Views | kebab-case | `editar-empresa.blade.php` |
@@ -55,8 +55,8 @@ Preferir Eloquent:
 
 ```php
 Empresa::query()
-    ->where('Tenants_Id', $tenantId)
-    ->where('Cnpj', $cnpj)
+    ->where('tenant_id', $tenantId)
+    ->where('cnpj', $cnpj)
     ->first();
 ```
 
@@ -64,7 +64,7 @@ SQL cru somente com bindings:
 
 ```php
 DB::selectOne(
-    'SELECT * FROM CAD_Empresas WHERE Tenants_Id = :tenantId AND Cnpj = :cnpj',
+    'SELECT * FROM cad_empresas WHERE tenant_id = :tenantId AND cnpj = :cnpj',
     [
         'tenantId' => $tenantId,
         'cnpj' => $cnpj,

@@ -33,7 +33,7 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
 
-    protected $table = 'SIS_Usuarios';
+    protected $table = 'sis_usuarios';
 
     /**
      * @var list<string>
@@ -67,14 +67,15 @@ class User extends Authenticatable
 
     public function tenants(): BelongsToMany
     {
-        return $this->belongsToMany(Tenant::class, 'SIS_TenantUsuarios', 'Usuario_Id', 'Tenant_Id')
+        return $this->belongsToMany(Tenant::class, 'sis_tenant_usuarios', 'usuario_id', 'tenant_id')
             ->withPivot(['perfil', 'ativo'])
             ->withTimestamps();
     }
 
     public function papeis(): BelongsToMany
     {
-        return $this->belongsToMany(Papel::class, 'SIS_UsuarioPapeis', 'Usuario_Id', 'Papel_Id')
+        return $this->belongsToMany(Papel::class, 'sis_usuario_papeis', 'usuario_id', 'papel_id')
             ->withTimestamps();
     }
 }
+

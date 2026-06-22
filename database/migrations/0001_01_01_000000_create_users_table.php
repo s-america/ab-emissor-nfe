@@ -27,7 +27,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('SIS_Usuarios', function (Blueprint $table): void {
+        Schema::create('sis_usuarios', function (Blueprint $table): void {
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
@@ -38,15 +38,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('SIS_PasswordResetTokens', function (Blueprint $table): void {
+        Schema::create('sis_password_reset_tokens', function (Blueprint $table): void {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
-        Schema::create('SIS_Sessoes', function (Blueprint $table): void {
+        Schema::create('sis_sessoes', function (Blueprint $table): void {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index()->constrained('SIS_Usuarios')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->index()->constrained('sis_usuarios')->nullOnDelete();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -56,8 +56,9 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('SIS_Sessoes');
-        Schema::dropIfExists('SIS_PasswordResetTokens');
-        Schema::dropIfExists('SIS_Usuarios');
+        Schema::dropIfExists('sis_sessoes');
+        Schema::dropIfExists('sis_password_reset_tokens');
+        Schema::dropIfExists('sis_usuarios');
     }
 };
+

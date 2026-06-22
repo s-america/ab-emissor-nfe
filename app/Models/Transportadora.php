@@ -25,10 +25,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transportadora extends Model
 {
-    protected $table = 'CAD_Transportadoras';
+    protected $table = 'cad_transportadoras';
 
     protected $fillable = [
-        'Empresa_Id',
+        'empresa_id',
         'nome_razao_social',
         'cpf_cnpj',
         'inscricao_estadual',

@@ -27,7 +27,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('SIS_Jobs', function (Blueprint $table): void {
+        Schema::create('sis_jobs', function (Blueprint $table): void {
             $table->id();
             $table->string('queue')->index();
             $table->longText('payload');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->unsignedInteger('created_at');
         });
 
-        Schema::create('SIS_JobBatches', function (Blueprint $table): void {
+        Schema::create('sis_job_batches', function (Blueprint $table): void {
             $table->string('id')->primary();
             $table->string('name');
             $table->integer('total_jobs');
@@ -50,7 +50,7 @@ return new class extends Migration
             $table->integer('finished_at')->nullable();
         });
 
-        Schema::create('SIS_FailedJobs', function (Blueprint $table): void {
+        Schema::create('sis_failed_jobs', function (Blueprint $table): void {
             $table->id();
             $table->string('uuid')->unique();
             $table->text('connection');
@@ -63,8 +63,9 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('SIS_FailedJobs');
-        Schema::dropIfExists('SIS_JobBatches');
-        Schema::dropIfExists('SIS_Jobs');
+        Schema::dropIfExists('sis_failed_jobs');
+        Schema::dropIfExists('sis_job_batches');
+        Schema::dropIfExists('sis_jobs');
     }
 };
+

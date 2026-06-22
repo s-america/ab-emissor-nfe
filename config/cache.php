@@ -42,9 +42,9 @@ return [
         'database' => [
             'driver' => 'database',
             'connection' => env('DB_CACHE_CONNECTION'),
-            'table' => env('DB_CACHE_TABLE', 'SIS_Caches'),
+            'table' => env('DB_CACHE_TABLE', 'sis_caches'),
             'lock_connection' => env('DB_CACHE_LOCK_CONNECTION'),
-            'lock_table' => env('DB_CACHE_LOCK_TABLE', 'SIS_CacheLocks'),
+            'lock_table' => env('DB_CACHE_LOCK_TABLE', 'sis_cache_locks'),
         ],
 
         'file' => [
@@ -115,3 +115,4 @@ return [
     'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
 
 ];
+

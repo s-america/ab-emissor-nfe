@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 ],
             );
 
-            DB::table('SIS_Tenants')->updateOrInsert(
+            DB::table('sis_tenants')->updateOrInsert(
                 ['slug' => 'ab-contabilidade'],
                 [
                     'nome' => 'AB Contabilidade',
@@ -50,12 +50,12 @@ class DatabaseSeeder extends Seeder
                 ],
             );
 
-            $tenantId = (int) DB::table('SIS_Tenants')->where('slug', 'ab-contabilidade')->value('id');
+            $tenantId = (int) DB::table('sis_tenants')->where('slug', 'ab-contabilidade')->value('id');
 
-            DB::table('SIS_TenantUsuarios')->updateOrInsert(
+            DB::table('sis_tenant_usuarios')->updateOrInsert(
                 [
-                    'Tenant_Id' => $tenantId,
-                    'Usuario_Id' => $usuario->id,
+                    'tenant_id' => $tenantId,
+                    'usuario_id' => $usuario->id,
                 ],
                 [
                     'perfil' => 'admin_contabilidade',
@@ -65,10 +65,10 @@ class DatabaseSeeder extends Seeder
                 ],
             );
 
-            DB::table('CAD_Empresas')->updateOrInsert(
+            DB::table('cad_empresas')->updateOrInsert(
                 ['cnpj' => '00000000000191'],
                 [
-                    'Tenant_Id' => $tenantId,
+                    'tenant_id' => $tenantId,
                     'razao_social' => 'AB Contabilidade LTDA',
                     'nome_fantasia' => 'AB Contabilidade',
                     'inscricao_estadual' => null,
@@ -85,3 +85,4 @@ class DatabaseSeeder extends Seeder
         });
     }
 }
+
