@@ -21,6 +21,8 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DestinatarioController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
@@ -32,5 +34,7 @@ Route::middleware('guest')->group(function (): void {
 
 Route::middleware(['auth', 'usuario.ativo'])->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::resource('destinatarios', DestinatarioController::class)->except(['show', 'destroy']);
+    Route::resource('produtos', ProdutoController::class)->except(['show', 'destroy']);
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });

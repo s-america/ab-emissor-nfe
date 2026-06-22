@@ -22,6 +22,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Models\Empresa;
+use App\Models\Destinatario;
+use App\Models\Produto;
 use App\Models\Tenant;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +40,8 @@ class DashboardController extends Controller
             'usuario' => $usuario,
             'totalTenants' => Tenant::query()->count(),
             'totalEmpresas' => Empresa::query()->count(),
+            'totalDestinatarios' => Destinatario::query()->count(),
+            'totalProdutos' => Produto::query()->count(),
             'tenantsUsuario' => $usuario->tenants()->orderBy('nome')->get(),
         ]);
     }

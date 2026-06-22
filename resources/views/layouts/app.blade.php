@@ -43,6 +43,23 @@
             font-size: 18px;
         }
 
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .nav a:hover {
+            color: var(--ink);
+        }
+
         .shell {
             width: min(1120px, calc(100vw - 32px));
             margin: 28px auto;
@@ -77,12 +94,14 @@
             font-weight: 700;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
             border: 1px solid var(--line);
             border-radius: 6px;
             padding: 11px 12px;
             font-size: 15px;
+            background: #fff;
         }
 
         .check {
@@ -124,6 +143,51 @@
         .button-muted:hover {
             background: #f1f5f9;
             color: var(--ink);
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            border-bottom: 1px solid var(--line);
+            padding: 10px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .table th {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .form-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        .alert {
+            border: 1px solid #bfdbfe;
+            background: #eff6ff;
+            color: #1e3a8a;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
         }
 
         .error {
@@ -171,9 +235,20 @@
         @media (max-width: 760px) {
             .topbar {
                 padding: 0 16px;
+                height: auto;
+                min-height: 64px;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+                padding-top: 14px;
+                padding-bottom: 14px;
             }
 
             .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
                 grid-template-columns: 1fr;
             }
         }

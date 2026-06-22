@@ -64,6 +64,24 @@ class DatabaseSeeder extends Seeder
                     'updated_at' => now(),
                 ],
             );
+
+            DB::table('CAD_Empresas')->updateOrInsert(
+                ['cnpj' => '00000000000191'],
+                [
+                    'Tenant_Id' => $tenantId,
+                    'razao_social' => 'AB Contabilidade LTDA',
+                    'nome_fantasia' => 'AB Contabilidade',
+                    'inscricao_estadual' => null,
+                    'regime_tributario' => 'simples_nacional',
+                    'ambiente_fiscal' => 'homologacao',
+                    'limite_mensal_nfe' => 100,
+                    'email' => 'contato@abemissor.local',
+                    'telefone' => null,
+                    'ativo' => true,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+            );
         });
     }
 }

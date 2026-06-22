@@ -5,13 +5,22 @@
 @section('body')
     <header class="topbar">
         <div class="brand">AB Emissor NF-e</div>
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button class="button button-muted" type="submit">Sair</button>
-        </form>
+        <nav class="nav">
+            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('destinatarios.index') }}">Destinatarios</a>
+            <a href="{{ route('produtos.index') }}">Produtos</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="button button-muted" type="submit">Sair</button>
+            </form>
+        </nav>
     </header>
 
     <main class="shell">
+        @if (session('status'))
+            <div class="alert">{{ session('status') }}</div>
+        @endif
+
         <section class="panel">
             <h1>Dashboard</h1>
             <p class="muted">Usuario autenticado: {{ $usuario->nome }}</p>
@@ -26,8 +35,16 @@
                     <strong>{{ $totalEmpresas }}</strong>
                 </div>
                 <div class="metric">
+                    <span class="muted">Destinatarios</span>
+                    <strong>{{ $totalDestinatarios }}</strong>
+                </div>
+                <div class="metric">
+                    <span class="muted">Produtos</span>
+                    <strong>{{ $totalProdutos }}</strong>
+                </div>
+                <div class="metric">
                     <span class="muted">Fase atual</span>
-                    <strong>1</strong>
+                    <strong>2</strong>
                 </div>
             </div>
         </section>
