@@ -680,7 +680,7 @@ declare(strict_types=1);
 
 ---
 
-## 12. DIRETRIZES DE SEGURANÃ‡A
+## 12. DIRETRIZES DE SEGURANÇA
 
 - Nunca usar SQL concatenado.
 - Usar Eloquent ou Query Builder.
@@ -847,7 +847,7 @@ Antes de alterar qualquer coisa estrutural, explique brevemente o plano de arqui
 
 ---
 
-## APÃŠNDICE A - DECISÕES OFICIAIS
+## APÊNDICE A - DECISÕES OFICIAIS
 
 | Decisão | Status |
 |---|---|

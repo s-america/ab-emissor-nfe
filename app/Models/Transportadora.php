@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Transportadora extends Model
 {
@@ -36,4 +37,14 @@ class Transportadora extends Model
         'telefone',
         'ativo',
     ];
+
+    protected function casts(): array
+    {
+        return ['ativo' => 'boolean'];
+    }
+
+    public function empresa(): BelongsTo
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
 }

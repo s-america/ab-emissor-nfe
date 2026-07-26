@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Destinatario | AB Emissor NF-e')
+@section('title', 'Destinatário | AB Emissor NF-e')
 
 @section('body')
     @include('partials.topbar')
@@ -9,7 +9,7 @@
         <section class="panel">
             <div class="toolbar">
                 <div>
-                    <h1>{{ $destinatario->exists ? 'Editar destinatario' : 'Novo destinatario' }}</h1>
+                    <h1>{{ $destinatario->exists ? 'Editar destinatário' : 'Novo destinatário' }}</h1>
                     <p class="muted">{{ $empresa->razao_social }}</p>
                 </div>
                 <a class="button button-muted" href="{{ route('destinatarios.index') }}">Voltar</a>
@@ -23,7 +23,7 @@
 
                 <div class="form-grid">
                     <div class="field full">
-                        <label for="nome_razao_social">Nome/Razao social</label>
+                        <label for="nome_razao_social">Nome/Razão social</label>
                         <input id="nome_razao_social" name="nome_razao_social" value="{{ old('nome_razao_social', $destinatario->nome_razao_social) }}" required>
                         @error('nome_razao_social') <span class="error">{{ $message }}</span> @enderror
                     </div>
@@ -37,7 +37,7 @@
                     <div class="field">
                         <label for="indicador_ie">Indicador IE</label>
                         <select id="indicador_ie" name="indicador_ie">
-                            @foreach (['contribuinte' => 'Contribuinte', 'isento' => 'Isento', 'nao_contribuinte' => 'Nao contribuinte'] as $valor => $label)
+                            @foreach (['contribuinte' => 'Contribuinte', 'isento' => 'Isento', 'nao_contribuinte' => 'Não contribuinte'] as $valor => $label)
                                 <option value="{{ $valor }}" @selected(old('indicador_ie', $destinatario->indicador_ie) === $valor)>{{ $label }}</option>
                             @endforeach
                         </select>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="field">
-                        <label for="inscricao_estadual">Inscricao estadual</label>
+                        <label for="inscricao_estadual">Inscrição estadual</label>
                         <input id="inscricao_estadual" name="inscricao_estadual" value="{{ old('inscricao_estadual', $destinatario->inscricao_estadual) }}">
                     </div>
 
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="field">
-                        <label for="numero">Numero</label>
+                        <label for="numero">Número</label>
                         <input id="numero" name="numero" value="{{ old('numero', $destinatario->numero) }}">
                     </div>
 
@@ -76,12 +76,12 @@
                     </div>
 
                     <div class="field">
-                        <label for="municipio">Municipio</label>
+                        <label for="municipio">Município</label>
                         <input id="municipio" name="municipio" value="{{ old('municipio', $destinatario->municipio) }}">
                     </div>
 
                     <div class="field">
-                        <label for="codigo_municipio_ibge">Codigo IBGE</label>
+                        <label for="codigo_municipio_ibge">Código IBGE</label>
                         <input id="codigo_municipio_ibge" name="codigo_municipio_ibge" value="{{ old('codigo_municipio_ibge', $destinatario->codigo_municipio_ibge) }}">
                         @error('codigo_municipio_ibge') <span class="error">{{ $message }}</span> @enderror
                     </div>

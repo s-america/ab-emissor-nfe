@@ -21,7 +21,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Produtos;
 
+use App\Models\Cfop;
+use App\Models\Ncm;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SalvarProdutoRequest extends FormRequest
 {
@@ -52,9 +55,17 @@ class SalvarProdutoRequest extends FormRequest
         return [
             'codigo' => ['nullable', 'string', 'max:255'],
             'descricao' => ['required', 'string', 'max:255'],
-            'ncm' => ['nullable', 'digits:8'],
+            'ncm' => [
+                'nullable',
+                'digits:8',
+                Rule::exists((new Ncm())->getTable(), 'codigo')->where('ativo', true),
+            ],
             'cest' => ['nullable', 'digits:7'],
-            'cfop_padrao' => ['nullable', 'digits:4'],
+            'cfop_padrao' => [
+                'nullable',
+                'digits:4',
+                Rule::exists((new Cfop())->getTable(), 'codigo')->where('ativo', true),
+            ],
             'unidade_comercial' => ['required', 'string', 'max:6'],
             'origem' => ['required', 'string', 'max:2'],
             'cst_csosn' => ['nullable', 'string', 'max:4'],

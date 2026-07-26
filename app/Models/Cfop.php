@@ -28,4 +28,9 @@ class Cfop extends Model
     protected $table = 'fis_cfops';
 
     protected $fillable = ['codigo', 'descricao', 'tipo_operacao', 'ativo'];
+
+    protected function casts(): array
+    {
+        return ['ativo' => 'boolean'];
+    }
 }

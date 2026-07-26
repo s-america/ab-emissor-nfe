@@ -23,7 +23,7 @@
 
                 <div class="form-grid">
                     <div class="field">
-                        <label for="codigo">Codigo interno</label>
+                        <label for="codigo">Código interno</label>
                         <input id="codigo" name="codigo" value="{{ old('codigo', $produto->codigo) }}">
                     </div>
 
@@ -34,14 +34,19 @@
                     </div>
 
                     <div class="field full">
-                        <label for="descricao">Descricao</label>
+                        <label for="descricao">Descrição</label>
                         <input id="descricao" name="descricao" value="{{ old('descricao', $produto->descricao) }}" required>
                         @error('descricao') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="field">
                         <label for="ncm">NCM</label>
-                        <input id="ncm" name="ncm" value="{{ old('ncm', $produto->ncm) }}">
+                        <select id="ncm" name="ncm">
+                            <option value="">Selecione</option>
+                            @foreach ($ncms as $ncm)
+                                <option value="{{ $ncm->codigo }}" @selected(old('ncm', $produto->ncm) === $ncm->codigo)>{{ $ncm->codigo }} - {{ $ncm->descricao }}</option>
+                            @endforeach
+                        </select>
                         @error('ncm') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
@@ -53,7 +58,12 @@
 
                     <div class="field">
                         <label for="cfop_padrao">CFOP padrao</label>
-                        <input id="cfop_padrao" name="cfop_padrao" value="{{ old('cfop_padrao', $produto->cfop_padrao) }}">
+                        <select id="cfop_padrao" name="cfop_padrao">
+                            <option value="">Selecione</option>
+                            @foreach ($cfops as $cfop)
+                                <option value="{{ $cfop->codigo }}" @selected(old('cfop_padrao', $produto->cfop_padrao) === $cfop->codigo)>{{ $cfop->codigo }} - {{ $cfop->descricao }}</option>
+                            @endforeach
+                        </select>
                         @error('cfop_padrao') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
@@ -82,7 +92,7 @@
                     </div>
 
                     <div class="field">
-                        <label for="valor_unitario">Valor unitario</label>
+                        <label for="valor_unitario">Valor unitário</label>
                         <input id="valor_unitario" name="valor_unitario" value="{{ old('valor_unitario', $produto->valor_unitario ?? 0) }}" required>
                         @error('valor_unitario') <span class="error">{{ $message }}</span> @enderror
                     </div>

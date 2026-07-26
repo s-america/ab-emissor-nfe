@@ -22,6 +22,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class NaturezaOperacao extends Model
 {
@@ -34,5 +35,15 @@ class NaturezaOperacao extends Model
         'cfop_padrao',
         'ativo',
     ];
+
+    protected function casts(): array
+    {
+        return ['ativo' => 'boolean'];
+    }
+
+    public function empresa(): BelongsTo
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
 }
 

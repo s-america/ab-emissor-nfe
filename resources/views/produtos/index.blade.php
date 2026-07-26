@@ -20,15 +20,15 @@
             </div>
 
             <form method="GET" action="{{ route('produtos.index') }}" class="toolbar">
-                <input name="busca" value="{{ request('busca') }}" placeholder="Buscar por codigo, descricao ou NCM">
+                <input name="busca" value="{{ request('busca') }}" placeholder="Buscar por código, descrição ou NCM">
                 <button class="button button-muted" type="submit">Buscar</button>
             </form>
 
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Codigo</th>
-                        <th>Descricao</th>
+                        <th>Código</th>
+                        <th>Descrição</th>
                         <th>NCM</th>
                         <th>CFOP</th>
                         <th>Valor</th>

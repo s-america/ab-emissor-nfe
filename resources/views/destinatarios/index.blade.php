@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Destinatarios | AB Emissor NF-e')
+@section('title', 'Destinatários | AB Emissor NF-e')
 
 @section('body')
     @include('partials.topbar')
@@ -13,10 +13,10 @@
         <section class="panel">
             <div class="toolbar">
                 <div>
-                    <h1>Destinatarios</h1>
+                    <h1>Destinatários</h1>
                     <p class="muted">{{ $empresa->razao_social }}</p>
                 </div>
-                <a class="button" href="{{ route('destinatarios.create') }}">Novo destinatario</a>
+                <a class="button" href="{{ route('destinatarios.create') }}">Novo destinatário</a>
             </div>
 
             <form method="GET" action="{{ route('destinatarios.index') }}" class="toolbar">
@@ -27,7 +27,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Nome/Razao social</th>
+                        <th>Nome/Razão social</th>
                         <th>CPF/CNPJ</th>
                         <th>UF</th>
                         <th>Status</th>
@@ -45,7 +45,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="muted">Nenhum destinatario cadastrado.</td>
+                            <td colspan="5" class="muted">Nenhum destinatário cadastrado.</td>
                         </tr>
                     @endforelse
                 </tbody>

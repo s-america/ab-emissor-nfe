@@ -23,6 +23,8 @@ namespace App\Http\Controllers;
 
 use App\Actions\Produtos\SalvarProdutoAction;
 use App\Http\Requests\Produtos\SalvarProdutoRequest;
+use App\Models\Cfop;
+use App\Models\Ncm;
 use App\Models\Produto;
 use App\Models\User;
 use App\Services\Empresas\EmpresaContextService;
@@ -73,6 +75,8 @@ class ProdutoController extends Controller
         return view('produtos.form', [
             'empresa' => $empresa,
             'produto' => new Produto(['ativo' => true, 'unidade_comercial' => 'UN', 'origem' => '0', 'valor_unitario' => 0]),
+            'cfops' => Cfop::query()->where('ativo', true)->orderBy('codigo')->get(),
+            'ncms' => Ncm::query()->where('ativo', true)->orderBy('codigo')->get(),
         ]);
     }
 
@@ -92,7 +96,12 @@ class ProdutoController extends Controller
         $empresa = $this->empresaAtualOrFail();
         abort_unless((int) $produto->empresa_id === (int) $empresa->id, 403);
 
-        return view('produtos.form', compact('empresa', 'produto'));
+        return view('produtos.form', [
+            'empresa' => $empresa,
+            'produto' => $produto,
+            'cfops' => Cfop::query()->where('ativo', true)->orderBy('codigo')->get(),
+            'ncms' => Ncm::query()->where('ativo', true)->orderBy('codigo')->get(),
+        ]);
     }
 
     public function update(SalvarProdutoRequest $request, Produto $produto, SalvarProdutoAction $action): RedirectResponse

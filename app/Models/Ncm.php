@@ -28,4 +28,13 @@ class Ncm extends Model
     protected $table = 'fis_ncms';
 
     protected $fillable = ['codigo', 'descricao', 'vigente_de', 'vigente_ate', 'ativo'];
+
+    protected function casts(): array
+    {
+        return [
+            'vigente_de' => 'date',
+            'vigente_ate' => 'date',
+            'ativo' => 'boolean',
+        ];
+    }
 }
