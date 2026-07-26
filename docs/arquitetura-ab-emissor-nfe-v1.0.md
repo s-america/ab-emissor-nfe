@@ -416,11 +416,15 @@ CFG_Configuracoes
 
 ### 8.3 Usuários e permissões
 
-- administrador técnico;
-- administrador da contabilidade;
-- operador da contabilidade;
-- cliente emitente;
-- suporte.
+Decisão de interface: os tenants administrados serão apresentados como **empresas**. “Cliente” fica reservado para destinatários de NF-e ou uso comercial genérico; `tenant` permanece interno.
+
+- super administrador Salta Digital (`salta_admin`);
+- administrador da contabilidade (`contabilidade`);
+- operador da contabilidade (`contabilidade`);
+- cliente emitente (`cliente`);
+- suporte, sempre com escopo explícito.
+
+O termo `tenant` é interno. A interface usa **cliente**. O painel administrativo de clientes não é exibido ao cliente emitente.
 
 ### 8.4 Destinatários
 
@@ -471,6 +475,7 @@ CFG_Configuracoes
 ### 8.8 Painel da Contabilidade
 
 - empresas clientes;
+- clientes administrados pela própria contabilidade;
 - notas por período;
 - XMLs em lote;
 - rejeições;
@@ -497,6 +502,21 @@ CFG_Configuracoes
 - webhooks;
 - bloqueio server-side;
 - limite mensal.
+
+### 8.11 Painel administrativo Salta Digital
+
+- criar, editar, visualizar e desabilitar clientes;
+- excluir cliente somente sem movimento fiscal;
+- preservar dados, arquivos e histórico após desabilitação;
+- administrar usuários administrativos, papéis e permissões;
+- acessar todos os clientes sem misturar o contexto operacional.
+
+### 8.12 Segurança contínua
+
+- verificação diária de configuração;
+- auditoria de dependências;
+- alertas por webhook/e-mail;
+- SAST, análise de segredos, DAST e monitoramento de disponibilidade.
 
 ---
 
@@ -579,6 +599,18 @@ erro
 - Auditoria inicial.
 - Layout principal.
 - Dashboard básico.
+
+### Fase 1.5 - Governança de clientes e acessos
+
+- Separação dos painéis cliente, contabilidade e Salta Digital.
+- Papéis com escopo explícito.
+- Vínculo entre cliente e contabilidade responsável.
+- Painel administrativo de clientes.
+- Criação, alteração, desabilitação e exclusão condicionada de clientes.
+- Gestão de usuários administrativos, papéis e permissões.
+- Rotação, expiração e invalidação de sessão.
+- Isolamento obrigatório por cliente em consultas e policies.
+- Rotina contínua de verificação de segurança e alertas.
 
 ### Fase 2 - Cadastros fiscais
 
@@ -861,4 +893,7 @@ Antes de alterar qualquer coisa estrutural, explique brevemente o plano de arqui
 | Produto proprietário | Aprovado |
 | NF-e modelo 55 primeiro | Aprovado |
 | SaaS comercial somente fase futura | Aprovado |
+> Decisão de interface revisada: tenants administrados serão apresentados como **empresas**; “cliente” fica reservado para destinatários de NF-e ou uso comercial genérico.
+## Decisao posterior - Terminologia de interface
 
+Para a interface administrativa, o nome humano dos tenants sera **empresa**. A palavra cliente sera usada para destinatarios de NF-e e referencias comerciais. `tenant` continua apenas interno.

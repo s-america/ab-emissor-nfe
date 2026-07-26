@@ -33,6 +33,7 @@ class Tenant extends Model
         'nome',
         'slug',
         'tipo',
+        'contabilidade_tenant_id',
         'ativo',
     ];
 
@@ -53,6 +54,16 @@ class Tenant extends Model
     public function empresas(): HasMany
     {
         return $this->hasMany(Empresa::class, 'tenant_id');
+    }
+
+    public function contabilidade(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(self::class, 'contabilidade_tenant_id');
+    }
+
+    public function clientesGerenciados(): HasMany
+    {
+        return $this->hasMany(self::class, 'contabilidade_tenant_id');
     }
 }
 

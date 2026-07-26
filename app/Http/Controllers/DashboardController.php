@@ -21,28 +21,36 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Empresa;
 use App\Models\Destinatario;
 use App\Models\Produto;
-use App\Models\Tenant;
+use App\Services\Empresas\EmpresaContextService;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
+    public function __construct(private readonly EmpresaContextService $empresaContextService)
+    {
+    }
+
     public function __invoke(): View
     {
         /** @var Authenticatable&\App\Models\User $usuario */
         $usuario = Auth::user();
+        $cliente = $this->empresaContextService->clienteAtual($usuario);
+        $empresa = $this->empresaContextService->empresaAtual($usuario);
 
         return view('dashboard.index', [
             'usuario' => $usuario,
-            'totalTenants' => Tenant::query()->count(),
-            'totalEmpresas' => Empresa::query()->count(),
-            'totalDestinatarios' => Destinatario::query()->count(),
-            'totalProdutos' => Produto::query()->count(),
-            'tenantsUsuario' => $usuario->tenants()->orderBy('nome')->get(),
+            'cliente' => $cliente,
+            'empresa' => $empresa,
+            'totalDestinatarios' => $empresa === null
+                ? 0
+                : Destinatario::query()->where('empresa_id', $empresa->id)->count(),
+            'totalProdutos' => $empresa === null
+                ? 0
+                : Produto::query()->where('empresa_id', $empresa->id)->count(),
         ]);
     }
 }

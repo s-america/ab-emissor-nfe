@@ -21,6 +21,17 @@
 - Auditoria inicial.
 - Layout principal.
 
+## Fase 1.5 — Governança de clientes e acessos
+
+- Separar os painéis de cliente, contabilidade e Salta Digital.
+- Usar “cliente” na interface e manter `tenant` apenas no domínio interno.
+- Criar vínculo entre cliente e contabilidade responsável.
+- Criar painel administrativo para clientes, usuários, papéis e permissões.
+- Desabilitar clientes com movimento fiscal; excluir somente clientes sem movimento.
+- Manter histórico, arquivos e dados fiscais após desabilitação.
+- Rotacionar e expirar sessões, com rate limit no login.
+- Automatizar verificações de segurança, relatórios e alertas.
+
 ## Fase 2 — Cadastros fiscais
 
 - Destinatários.
@@ -76,3 +87,4 @@
 - Pagamentos.
 - Webhooks.
 - Bloqueio server-side.
+> Terminologia de interface: o painel administrativo usa **empresas**; `tenant` é apenas interno e “cliente” é usado para destinatários de NF-e.

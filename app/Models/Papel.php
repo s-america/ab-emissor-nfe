@@ -31,6 +31,7 @@ class Papel extends Model
     protected $fillable = [
         'nome',
         'slug',
+        'escopo',
         'descricao',
         'ativo',
     ];

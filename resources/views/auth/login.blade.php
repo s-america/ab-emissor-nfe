@@ -27,11 +27,6 @@
                     @enderror
                 </div>
 
-                <label class="check">
-                    <input name="remember" type="checkbox" value="1">
-                    Manter conectado
-                </label>
-
                 <button class="button" type="submit">Entrar</button>
             </form>
         </section>

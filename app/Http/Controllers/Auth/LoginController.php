@@ -25,6 +25,7 @@ use App\Actions\Auth\AutenticarUsuarioAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auditoria\AuditoriaService;
+use App\Services\AcessoService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +33,10 @@ use Illuminate\View\View;
 
 class LoginController extends Controller
 {
+    public function __construct(private readonly AcessoService $acessoService)
+    {
+    }
+
     public function create(): View
     {
         return view('auth.login');
@@ -41,7 +46,10 @@ class LoginController extends Controller
     {
         $autenticarUsuarioAction->executar($request->validated(), $request);
 
-        return redirect()->intended(route('dashboard'));
+        /** @var \App\Models\User $usuario */
+        $usuario = Auth::user();
+
+        return redirect()->intended(route($this->acessoService->painelInicial($usuario)));
     }
 
     public function destroy(Request $request, AuditoriaService $auditoriaService): RedirectResponse

@@ -20,6 +20,8 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AdminEmpresaController;
+use App\Http\Controllers\AdminUsuarioController;
 use App\Http\Controllers\CfopController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinatarioController;
@@ -36,7 +38,7 @@ Route::middleware('guest')->group(function (): void {
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 });
 
-Route::middleware(['auth', 'usuario.ativo'])->group(function (): void {
+Route::middleware(['auth', 'usuario.ativo', 'sessao.segura', 'cliente.ativo'])->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::resource('destinatarios', DestinatarioController::class)->except(['show', 'destroy']);
     Route::resource('produtos', ProdutoController::class)->except(['show', 'destroy']);
@@ -48,3 +50,11 @@ Route::middleware(['auth', 'usuario.ativo'])->group(function (): void {
     Route::resource('ncms', NcmController::class)->except(['show', 'destroy']);
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
+
+Route::middleware(['auth', 'usuario.ativo', 'sessao.segura', 'cliente.admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function (): void {
+        Route::resource('empresas', AdminEmpresaController::class)->except(['show']);
+        Route::resource('usuarios', AdminUsuarioController::class)->parameters(['usuarios' => 'usuario'])->except(['show']);
+    });

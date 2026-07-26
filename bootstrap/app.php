@@ -20,6 +20,10 @@
 declare(strict_types=1);
 
 use App\Http\Middleware\EnsureUsuarioAtivo;
+use App\Http\Middleware\EnsureClienteAtivo;
+use App\Http\Middleware\EnforceSessionSecurity;
+use App\Http\Middleware\EnsureSuperAdministrador;
+use App\Http\Middleware\EnsureClienteAdministrador;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -33,6 +37,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'usuario.ativo' => EnsureUsuarioAtivo::class,
+            'cliente.ativo' => EnsureClienteAtivo::class,
+            'sessao.segura' => EnforceSessionSecurity::class,
+            'super.admin' => EnsureSuperAdministrador::class,
+            'cliente.admin' => EnsureClienteAdministrador::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -22,24 +22,46 @@ declare(strict_types=1);
 namespace App\Services\Empresas;
 
 use App\Models\Empresa;
+use App\Models\Tenant;
 use App\Models\User;
 
 class EmpresaContextService
 {
     public function empresaAtual(User $usuario): ?Empresa
     {
-        $tenantIds = $usuario->tenants()
-            ->wherePivot('ativo', true)
-            ->pluck('sis_tenants.id');
+        $cliente = $this->clienteAtual($usuario);
 
-        if ($tenantIds->isEmpty()) {
+        if ($cliente === null) {
             return null;
         }
 
         return Empresa::query()
-            ->whereIn('tenant_id', $tenantIds)
+            ->where('tenant_id', $cliente->id)
             ->where('ativo', true)
             ->orderBy('razao_social')
             ->first();
+    }
+
+    public function clienteAtual(User $usuario): ?Tenant
+    {
+        $clientes = $usuario->tenants()
+            ->where('sis_tenants.ativo', true)
+            ->wherePivot('ativo', true)
+            ->get();
+
+        if ($clientes->count() !== 1) {
+            return null;
+        }
+
+        $cliente = $clientes->first();
+        $clienteIdSessao = session('cliente_id');
+
+        if ($clienteIdSessao !== null && (int) $clienteIdSessao !== (int) $cliente->id) {
+            return null;
+        }
+
+        session(['cliente_id' => (int) $cliente->id]);
+
+        return $cliente;
     }
 }

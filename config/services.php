@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'security_alert' => [
+        'webhook_url' => env('SECURITY_ALERT_WEBHOOK_URL'),
+    ],
+
 ];

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         DB::transaction(function (): void {
+            $this->criarPapeis();
             $usuario = User::query()->firstOrCreate(
                 ['email' => 'admin@abemissor.local'],
                 [
@@ -37,6 +38,12 @@ class DatabaseSeeder extends Seeder
                     'password' => 'password',
                     'ativo' => true,
                 ],
+            );
+
+            $papelId = DB::table('sis_papeis')->where('slug', 'admin_contabilidade')->value('id');
+            DB::table('sis_usuario_papeis')->updateOrInsert(
+                ['usuario_id' => $usuario->id, 'papel_id' => $papelId],
+                ['created_at' => now(), 'updated_at' => now()],
             );
 
             DB::table('sis_tenants')->updateOrInsert(
@@ -83,6 +90,21 @@ class DatabaseSeeder extends Seeder
                 ],
             );
         });
+    }
+
+    private function criarPapeis(): void
+    {
+        foreach ([
+            ['slug' => 'super_admin_salta', 'nome' => 'Super administrador Salta Digital', 'escopo' => 'salta_admin'],
+            ['slug' => 'admin_contabilidade', 'nome' => 'Administrador da contabilidade', 'escopo' => 'contabilidade'],
+            ['slug' => 'operador_contabilidade', 'nome' => 'Operador da contabilidade', 'escopo' => 'contabilidade'],
+            ['slug' => 'cliente_emitente', 'nome' => 'Cliente emitente', 'escopo' => 'cliente'],
+        ] as $papel) {
+            DB::table('sis_papeis')->updateOrInsert(
+                ['slug' => $papel['slug']],
+                $papel + ['ativo' => true, 'created_at' => now(), 'updated_at' => now()],
+            );
+        }
     }
 }
 
